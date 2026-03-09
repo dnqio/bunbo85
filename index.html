@@ -3,46 +3,79 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bún Bò 85 - Menu</title>
+<title>Bún Bò 85</title>
 
 <style>
+
 body{
 font-family: Arial, sans-serif;
 margin:0;
-background:#f5f5f5;
+background:#f4f4f4;
 }
 
-.header{
-background:#8b0000;
+header{
+background:#8B0000;
 color:white;
-text-align:center;
 padding:20px;
+text-align:center;
+}
+
+nav{
+background:#222;
+padding:10px;
+text-align:center;
+}
+
+nav a{
+color:white;
+margin:0 10px;
+text-decoration:none;
+font-weight:bold;
 }
 
 .container{
-max-width:800px;
+max-width:1000px;
 margin:auto;
 padding:20px;
 }
 
-.category{
-margin-top:30px;
+.search{
+margin-bottom:20px;
 }
 
-.category h2{
-border-bottom:2px solid #ddd;
-padding-bottom:5px;
+.search input{
+width:100%;
+padding:10px;
+font-size:16px;
 }
 
-.item{
-display:flex;
-justify-content:space-between;
-padding:12px 0;
-border-bottom:1px dashed #ccc;
+.menu-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
 }
 
-.item-name{
+.card{
+background:white;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 2px 6px rgba(0,0,0,0.15);
+}
+
+.card img{
+width:100%;
+height:150px;
+object-fit:cover;
+}
+
+.card-body{
+padding:15px;
+}
+
+.card-title{
 font-weight:bold;
+font-size:18px;
+margin-bottom:5px;
 }
 
 .price{
@@ -50,76 +83,175 @@ color:#c0392b;
 font-weight:bold;
 }
 
-.footer{
+button{
+margin-top:10px;
+padding:8px 12px;
+border:none;
+background:#8B0000;
+color:white;
+cursor:pointer;
+border-radius:5px;
+}
+
+.section-title{
+margin-top:40px;
+margin-bottom:20px;
+font-size:24px;
+border-bottom:2px solid #ddd;
+padding-bottom:5px;
+}
+
+.contact{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 2px 6px rgba(0,0,0,0.1);
+margin-top:40px;
+}
+
+footer{
 text-align:center;
 padding:20px;
 color:#777;
-font-size:14px;
 }
-</style>
 
+iframe{
+width:100%;
+height:300px;
+border:0;
+margin-top:15px;
+border-radius:10px;
+}
+
+</style>
 </head>
 
 <body>
 
-<div class="header">
+<header>
 <h1>BÚN BÒ 85</h1>
-<p>Menu quán</p>
-</div>
+<p>Đậm vị Huế</p>
+</header>
+
+<nav>
+<a href="#menu">Menu</a>
+<a href="#contact">Liên hệ</a>
+</nav>
 
 <div class="container">
 
-<div class="category">
-<h2>Bún Bò</h2>
+<div class="search">
+<input type="text" id="search" placeholder="Tìm món...">
+</div>
 
-<div class="item">
-<div class="item-name">Bún bò đặc biệt</div>
+<h2 class="section-title" id="menu">Menu</h2>
+
+<div class="menu-grid" id="menuList">
+
+<div class="card" data-name="bun bo dac biet">
+<img src="https://images.unsplash.com/photo-1604908176997-43117f1d07ef">
+<div class="card-body">
+<div class="card-title">Bún bò đặc biệt</div>
 <div class="price">65.000đ</div>
+<button onclick="order('Bún bò đặc biệt')">Đặt món</button>
+</div>
 </div>
 
-<div class="item">
-<div class="item-name">Bún bò tái</div>
+<div class="card" data-name="bun bo tai">
+<img src="https://images.unsplash.com/photo-1550547660-d9450f859349">
+<div class="card-body">
+<div class="card-title">Bún bò tái</div>
 <div class="price">55.000đ</div>
+<button onclick="order('Bún bò tái')">Đặt món</button>
+</div>
 </div>
 
-<div class="item">
-<div class="item-name">Bún bò gân</div>
+<div class="card" data-name="bun bo gan">
+<img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624">
+<div class="card-body">
+<div class="card-title">Bún bò gân</div>
 <div class="price">55.000đ</div>
+<button onclick="order('Bún bò gân')">Đặt món</button>
+</div>
 </div>
 
-<div class="item">
-<div class="item-name">Bún bò chả cua</div>
+<div class="card" data-name="bun bo cha cua">
+<img src="https://images.unsplash.com/photo-1550547660-d9450f859349">
+<div class="card-body">
+<div class="card-title">Bún bò chả cua</div>
 <div class="price">60.000đ</div>
+<button onclick="order('Bún bò chả cua')">Đặt món</button>
+</div>
 </div>
 
-</div>
-
-<div class="category">
-<h2>Đồ uống</h2>
-
-<div class="item">
-<div class="item-name">Trà đá</div>
-<div class="price">5.000đ</div>
-</div>
-
-<div class="item">
-<div class="item-name">Nước ngọt</div>
+<div class="card" data-name="nuoc ngot">
+<img src="https://images.unsplash.com/photo-1622483767028-3f66f32e8a1d">
+<div class="card-body">
+<div class="card-title">Nước ngọt</div>
 <div class="price">15.000đ</div>
+<button onclick="order('Nước ngọt')">Đặt món</button>
+</div>
 </div>
 
-<div class="item">
-<div class="item-name">Nước suối</div>
+<div class="card" data-name="nuoc suoi">
+<img src="https://images.unsplash.com/photo-1523365280197-f1783db0a8c9">
+<div class="card-body">
+<div class="card-title">Nước suối</div>
 <div class="price">10.000đ</div>
+<button onclick="order('Nước suối')">Đặt món</button>
 </div>
+</div>
+
+</div>
+
+<div class="contact" id="contact">
+
+<h2>Liên hệ</h2>
+
+<p><b>Địa chỉ:</b> Thêm địa chỉ quán</p>
+<p><b>Điện thoại:</b> <a href="tel:0900000000">0900000000</a></p>
+
+<iframe
+src="https://www.google.com/maps?q=ho%20chi%20minh&output=embed">
+</iframe>
 
 </div>
 
 </div>
 
-<div class="footer">
-<p>Địa chỉ: thêm địa chỉ quán tại đây</p>
-<p>Hotline: thêm số điện thoại</p>
-</div>
+<footer>
+© 2026 BunBo85
+</footer>
+
+<script>
+
+const search = document.getElementById("search");
+const items = document.querySelectorAll(".card");
+
+search.addEventListener("keyup", function(){
+
+const value = this.value.toLowerCase();
+
+items.forEach(card=>{
+const name = card.dataset.name;
+
+if(name.includes(value)){
+card.style.display="block";
+}else{
+card.style.display="none";
+}
+
+});
+
+});
+
+function order(item){
+
+alert("Bạn đã chọn: " + item + ". Vui lòng gọi quán để đặt món.");
+
+}
+
+</script>
 
 </body>
 </html>

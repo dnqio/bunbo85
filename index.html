@@ -4,149 +4,79 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Bún Bò 85</title>
+<title>Bún Bò 85 - Menu</title>
 
 <style>
 
-*{
-box-sizing:border-box;
-margin:0;
-padding:0;
-font-family:Arial, Helvetica, sans-serif;
-}
-
 body{
-background:#f6f6f6;
+font-family:Arial, Helvetica, sans-serif;
+margin:0;
+background:#f7f7f7;
 color:#333;
 }
 
 header{
-background:url("https://images.unsplash.com/photo-1604908176997-43117f1d07ef") center/cover;
-height:280px;
-display:flex;
-align-items:center;
-justify-content:center;
+background:#8B0000;
 color:white;
 text-align:center;
-}
-
-header h1{
-font-size:42px;
-background:rgba(0,0,0,0.5);
-padding:15px 25px;
-border-radius:8px;
-}
-
-.container{
-max-width:1000px;
-margin:auto;
 padding:25px;
 }
 
-.search{
-margin-bottom:25px;
+.container{
+max-width:700px;
+margin:auto;
+padding:20px;
 }
 
-.search input{
-width:100%;
-padding:12px;
-font-size:16px;
-border:1px solid #ddd;
-border-radius:6px;
-}
-
-.category{
-margin-top:30px;
-margin-bottom:15px;
-font-size:24px;
-border-bottom:3px solid #ddd;
-padding-bottom:6px;
-}
-
-.menu-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:20px;
-}
-
-.card{
-background:white;
-border-radius:10px;
-overflow:hidden;
-box-shadow:0 3px 8px rgba(0,0,0,0.15);
-transition:0.2s;
-}
-
-.card:hover{
-transform:translateY(-3px);
-}
-
-.card img{
-width:100%;
-height:150px;
-object-fit:cover;
-}
-
-.card-body{
-padding:14px;
-}
-
-.item-name{
-font-weight:bold;
-font-size:18px;
-margin-bottom:6px;
-}
-
-.price{
-color:#c0392b;
-font-weight:bold;
-}
-
-.desc{
-font-size:14px;
-color:#666;
-margin-top:5px;
-}
-
-.contact{
-margin-top:50px;
+.section{
 background:white;
 padding:20px;
-border-radius:10px;
+margin-bottom:20px;
+border-radius:8px;
 box-shadow:0 2px 6px rgba(0,0,0,0.1);
 }
 
-.contact h2{
-margin-bottom:10px;
+.section h2{
+margin-top:0;
+border-bottom:2px solid #eee;
+padding-bottom:6px;
 }
 
-.contact p{
-margin:6px 0;
-}
-
-.call{
-display:inline-block;
+.topping-list{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
 margin-top:10px;
-background:#8B0000;
-color:white;
-padding:10px 16px;
+}
+
+.topping{
+background:#fafafa;
+padding:10px;
 border-radius:6px;
-text-decoration:none;
+border:1px solid #eee;
 }
 
-iframe{
-width:100%;
-height:250px;
-border:0;
-margin-top:10px;
-border-radius:8px;
+.menu-item{
+display:flex;
+justify-content:space-between;
+padding:10px 0;
+border-bottom:1px dashed #ddd;
+}
+
+.menu-item:last-child{
+border-bottom:none;
+}
+
+.price{
+font-weight:bold;
+color:#c0392b;
 }
 
 footer{
 text-align:center;
 padding:20px;
+font-size:14px;
 color:#777;
-margin-top:30px;
 }
 
 </style>
@@ -156,111 +86,140 @@ margin-top:30px;
 
 <header>
 <h1>BÚN BÒ 85</h1>
+<p>Menu</p>
 </header>
 
 <div class="container">
 
-<div class="search">
-<input id="search" placeholder="Tìm món...">
-</div>
+<div class="section">
 
-<div class="category">Bún Bò</div>
+<h2>Các loại topping</h2>
 
-<div class="menu-grid">
+<div class="topping-list">
 
-<div class="card" data-name="bun bo dac biet">
-<img src="https://images.unsplash.com/photo-1604908176997-43117f1d07ef">
-<div class="card-body">
-<div class="item-name">Bún bò đặc biệt</div>
-<div class="price">65.000đ</div>
-<div class="desc">Đầy đủ bò, chả, gân, nước dùng đậm vị Huế</div>
-</div>
-</div>
+<div class="topping">Tái</div>
+<div class="topping">Nạm</div>
+<div class="topping">Gân</div>
+<div class="topping">Chả heo</div>
+<div class="topping">Chả cua</div>
+<div class="topping">Giò heo (nạc / gân / móng)</div>
 
-<div class="card" data-name="bun bo tai">
-<img src="https://images.unsplash.com/photo-1550547660-d9450f859349">
-<div class="card-body">
-<div class="item-name">Bún bò tái</div>
-<div class="price">55.000đ</div>
-<div class="desc">Bò tái mềm, nước dùng thanh</div>
-</div>
-</div>
-
-<div class="card" data-name="bun bo gan">
-<img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624">
-<div class="card-body">
-<div class="item-name">Bún bò gân</div>
-<div class="price">55.000đ</div>
-<div class="desc">Gân bò mềm, đậm đà</div>
-</div>
 </div>
 
 </div>
 
-<div class="category">Đồ uống</div>
+<div class="section">
 
-<div class="menu-grid">
+<h2>Menu</h2>
 
-<div class="card" data-name="nuoc ngot">
-<img src="https://images.unsplash.com/photo-1622483767028-3f66f32e8a1d">
-<div class="card-body">
-<div class="item-name">Nước ngọt</div>
-<div class="price">15.000đ</div>
-</div>
+<div class="menu-item">
+<span>Bún bò tái</span>
+<span class="price">55.000</span>
 </div>
 
-<div class="card" data-name="nuoc suoi">
-<img src="https://images.unsplash.com/photo-1523365280197-f1783db0a8c9">
-<div class="card-body">
-<div class="item-name">Nước suối</div>
-<div class="price">10.000đ</div>
-</div>
+<div class="menu-item">
+<span>Bún bò nạm</span>
+<span class="price">55.000</span>
 </div>
 
+<div class="menu-item">
+<span>Bún bò gân</span>
+<span class="price">55.000</span>
 </div>
 
-<div class="contact">
+<div class="menu-item">
+<span>Bún bò tái nạm</span>
+<span class="price">60.000</span>
+</div>
 
-<h2>Liên hệ</h2>
+<div class="menu-item">
+<span>Bún bò tái gân</span>
+<span class="price">60.000</span>
+</div>
 
-<p><b>Địa chỉ:</b> thêm địa chỉ quán</p>
-<p><b>Điện thoại:</b> 0900000000</p>
+<div class="menu-item">
+<span>Bún bò nạm gân</span>
+<span class="price">60.000</span>
+</div>
 
-<a class="call" href="tel:0900000000">Gọi đặt món</a>
+<div class="menu-item">
+<span>Bún bò tái nạm gân</span>
+<span class="price">65.000</span>
+</div>
 
-<iframe src="https://www.google.com/maps?q=ho%20chi%20minh&output=embed"></iframe>
+<div class="menu-item">
+<span>Bún bò tái chả heo</span>
+<span class="price">60.000</span>
+</div>
+
+<div class="menu-item">
+<span>Bún bò nạm chả heo</span>
+<span class="price">60.000</span>
+</div>
+
+<div class="menu-item">
+<span>Bún bò tái chả cua</span>
+<span class="price">60.000</span>
+</div>
+
+<div class="menu-item">
+<span>Bún bò nạm chả cua</span>
+<span class="price">60.000</span>
+</div>
+
+<div class="menu-item">
+<span>Bún bò đặc biệt</span>
+<span class="price">70.000</span>
+</div>
+
+<div class="menu-item">
+<span>Bún bò giò heo</span>
+<span class="price">65.000</span>
+</div>
+
+<div class="menu-item">
+<span>Bún bò tái giò heo</span>
+<span class="price">70.000</span>
+</div>
+
+<div class="menu-item">
+<span>Bún bò nạm giò heo</span>
+<span class="price">70.000</span>
+</div>
+
+<div class="menu-item">
+<span>Bún bò tái nạm giò heo</span>
+<span class="price">75.000</span>
+</div>
+
+</div>
+
+<div class="section">
+
+<h2>Đồ uống</h2>
+
+<div class="menu-item">
+<span>Trà đá</span>
+<span class="price">5.000</span>
+</div>
+
+<div class="menu-item">
+<span>Nước suối</span>
+<span class="price">10.000</span>
+</div>
+
+<div class="menu-item">
+<span>Nước ngọt</span>
+<span class="price">15.000</span>
+</div>
 
 </div>
 
 </div>
 
 <footer>
-© 2026 BunBo85
+© BunBo85
 </footer>
-
-<script>
-
-const search=document.getElementById("search")
-const items=document.querySelectorAll(".card")
-
-search.addEventListener("keyup",function(){
-
-const value=this.value.toLowerCase()
-
-items.forEach(card=>{
-const name=card.dataset.name
-
-if(name.includes(value)){
-card.style.display="block"
-}else{
-card.style.display="none"
-}
-
-})
-
-})
-
-</script>
 
 </body>
 </html>

@@ -3,65 +3,64 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Bún Bò 85</title>
 
 <style>
 
-body{
-font-family:Arial;
+*{
+box-sizing:border-box;
 margin:0;
-background:#f4f4f4;
+padding:0;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+background:#f6f6f6;
+color:#333;
 }
 
 header{
-background:#8B0000;
+background:url("https://images.unsplash.com/photo-1604908176997-43117f1d07ef") center/cover;
+height:280px;
+display:flex;
+align-items:center;
+justify-content:center;
 color:white;
 text-align:center;
-padding:20px;
 }
 
-nav{
-background:#222;
-color:white;
-padding:10px;
-display:flex;
-justify-content:center;
-gap:20px;
-flex-wrap:wrap;
-}
-
-nav a{
-color:white;
-text-decoration:none;
-font-weight:bold;
+header h1{
+font-size:42px;
+background:rgba(0,0,0,0.5);
+padding:15px 25px;
+border-radius:8px;
 }
 
 .container{
-max-width:1100px;
+max-width:1000px;
 margin:auto;
-padding:20px;
+padding:25px;
 }
 
 .search{
-margin-bottom:15px;
+margin-bottom:25px;
 }
 
 .search input{
 width:100%;
-padding:10px;
+padding:12px;
 font-size:16px;
+border:1px solid #ddd;
+border-radius:6px;
 }
 
-.filters{
-margin-bottom:20px;
-}
-
-.filters button{
-padding:8px 10px;
-margin:4px;
-border:none;
-background:#ddd;
-cursor:pointer;
+.category{
+margin-top:30px;
+margin-bottom:15px;
+font-size:24px;
+border-bottom:3px solid #ddd;
+padding-bottom:6px;
 }
 
 .menu-grid{
@@ -74,7 +73,12 @@ gap:20px;
 background:white;
 border-radius:10px;
 overflow:hidden;
-box-shadow:0 2px 6px rgba(0,0,0,0.2);
+box-shadow:0 3px 8px rgba(0,0,0,0.15);
+transition:0.2s;
+}
+
+.card:hover{
+transform:translateY(-3px);
 }
 
 .card img{
@@ -84,12 +88,13 @@ object-fit:cover;
 }
 
 .card-body{
-padding:15px;
+padding:14px;
 }
 
-.title{
+.item-name{
 font-weight:bold;
 font-size:18px;
+margin-bottom:6px;
 }
 
 .price{
@@ -97,43 +102,36 @@ color:#c0392b;
 font-weight:bold;
 }
 
-button{
-padding:8px 12px;
-border:none;
-background:#8B0000;
-color:white;
-cursor:pointer;
-border-radius:5px;
-margin-top:8px;
-}
-
-.cart{
-position:fixed;
-right:0;
-top:0;
-width:260px;
-height:100%;
-background:white;
-box-shadow:-2px 0 6px rgba(0,0,0,0.2);
-padding:15px;
-overflow:auto;
-}
-
-.cart h3{
-margin-top:0;
-}
-
-.cart-item{
-display:flex;
-justify-content:space-between;
-margin-bottom:6px;
+.desc{
+font-size:14px;
+color:#666;
+margin-top:5px;
 }
 
 .contact{
+margin-top:50px;
 background:white;
 padding:20px;
 border-radius:10px;
-margin-top:30px;
+box-shadow:0 2px 6px rgba(0,0,0,0.1);
+}
+
+.contact h2{
+margin-bottom:10px;
+}
+
+.contact p{
+margin:6px 0;
+}
+
+.call{
+display:inline-block;
+margin-top:10px;
+background:#8B0000;
+color:white;
+padding:10px 16px;
+border-radius:6px;
+text-decoration:none;
 }
 
 iframe{
@@ -144,96 +142,91 @@ margin-top:10px;
 border-radius:8px;
 }
 
-.status{
-font-weight:bold;
-margin-top:5px;
-}
-
-.lang{
-position:absolute;
-right:10px;
-top:10px;
+footer{
+text-align:center;
+padding:20px;
+color:#777;
+margin-top:30px;
 }
 
 </style>
-
 </head>
 
 <body>
 
 <header>
 <h1>BÚN BÒ 85</h1>
-<p>Đậm vị Huế</p>
-<div class="status" id="openStatus"></div>
-<div class="lang">
-<button onclick="setLang('vi')">VI</button>
-<button onclick="setLang('en')">EN</button>
-</div>
 </header>
-
-<nav>
-<a href="#menu">Menu</a>
-<a href="#contact">Liên hệ</a>
-</nav>
 
 <div class="container">
 
 <div class="search">
-<input id="search" placeholder="Tìm món">
+<input id="search" placeholder="Tìm món...">
 </div>
 
-<div class="filters">
-<button onclick="filterMenu('all')">Tất cả</button>
-<button onclick="filterMenu('bunbo')">Bún bò</button>
-<button onclick="filterMenu('drink')">Đồ uống</button>
-</div>
+<div class="category">Bún Bò</div>
 
-<div class="menu-grid" id="menu">
+<div class="menu-grid">
 
-<div class="card" data-category="bunbo" data-name="bun bo dac biet">
+<div class="card" data-name="bun bo dac biet">
 <img src="https://images.unsplash.com/photo-1604908176997-43117f1d07ef">
 <div class="card-body">
-<div class="title">Bún bò đặc biệt</div>
+<div class="item-name">Bún bò đặc biệt</div>
 <div class="price">65.000đ</div>
-<button onclick="addCart('Bún bò đặc biệt',65000)">Thêm</button>
+<div class="desc">Đầy đủ bò, chả, gân, nước dùng đậm vị Huế</div>
 </div>
 </div>
 
-<div class="card" data-category="bunbo" data-name="bun bo tai">
+<div class="card" data-name="bun bo tai">
 <img src="https://images.unsplash.com/photo-1550547660-d9450f859349">
 <div class="card-body">
-<div class="title">Bún bò tái</div>
+<div class="item-name">Bún bò tái</div>
 <div class="price">55.000đ</div>
-<button onclick="addCart('Bún bò tái',55000)">Thêm</button>
+<div class="desc">Bò tái mềm, nước dùng thanh</div>
 </div>
 </div>
 
-<div class="card" data-category="drink" data-name="nuoc ngot">
+<div class="card" data-name="bun bo gan">
+<img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624">
+<div class="card-body">
+<div class="item-name">Bún bò gân</div>
+<div class="price">55.000đ</div>
+<div class="desc">Gân bò mềm, đậm đà</div>
+</div>
+</div>
+
+</div>
+
+<div class="category">Đồ uống</div>
+
+<div class="menu-grid">
+
+<div class="card" data-name="nuoc ngot">
 <img src="https://images.unsplash.com/photo-1622483767028-3f66f32e8a1d">
 <div class="card-body">
-<div class="title">Nước ngọt</div>
+<div class="item-name">Nước ngọt</div>
 <div class="price">15.000đ</div>
-<button onclick="addCart('Nước ngọt',15000)">Thêm</button>
 </div>
 </div>
 
-<div class="card" data-category="drink" data-name="nuoc suoi">
+<div class="card" data-name="nuoc suoi">
 <img src="https://images.unsplash.com/photo-1523365280197-f1783db0a8c9">
 <div class="card-body">
-<div class="title">Nước suối</div>
+<div class="item-name">Nước suối</div>
 <div class="price">10.000đ</div>
-<button onclick="addCart('Nước suối',10000)">Thêm</button>
 </div>
 </div>
 
 </div>
 
-<div class="contact" id="contact">
+<div class="contact">
 
 <h2>Liên hệ</h2>
 
 <p><b>Địa chỉ:</b> thêm địa chỉ quán</p>
-<p><b>Điện thoại:</b> <a href="tel:0900000000">0900000000</a></p>
+<p><b>Điện thoại:</b> 0900000000</p>
+
+<a class="call" href="tel:0900000000">Gọi đặt món</a>
 
 <iframe src="https://www.google.com/maps?q=ho%20chi%20minh&output=embed"></iframe>
 
@@ -241,18 +234,14 @@ top:10px;
 
 </div>
 
-<div class="cart">
-<h3>Giỏ hàng</h3>
-<div id="cartItems"></div>
-<hr>
-<div>Tổng: <span id="total">0</span> đ</div>
-<button onclick="order()">Gửi đơn</button>
-</div>
+<footer>
+© 2026 BunBo85
+</footer>
 
 <script>
 
-const items=document.querySelectorAll(".card")
 const search=document.getElementById("search")
+const items=document.querySelectorAll(".card")
 
 search.addEventListener("keyup",function(){
 
@@ -260,16 +249,8 @@ const value=this.value.toLowerCase()
 
 items.forEach(card=>{
 const name=card.dataset.name
-card.style.display=name.includes(value)?"block":"none"
-})
 
-})
-
-function filterMenu(cat){
-
-items.forEach(card=>{
-
-if(cat==="all" || card.dataset.category===cat){
+if(name.includes(value)){
 card.style.display="block"
 }else{
 card.style.display="none"
@@ -277,65 +258,7 @@ card.style.display="none"
 
 })
 
-}
-
-let cart=[]
-function addCart(name,price){
-
-cart.push({name,price})
-renderCart()
-
-}
-
-function renderCart(){
-
-const list=document.getElementById("cartItems")
-list.innerHTML=""
-let total=0
-
-cart.forEach(item=>{
-total+=item.price
-list.innerHTML+=`<div class="cart-item">
-<span>${item.name}</span>
-<span>${item.price}</span>
-</div>`
 })
-
-document.getElementById("total").innerText=total
-
-}
-
-function order(){
-
-alert("Mang danh sách này ra quầy hoặc gọi nhân viên.")
-
-}
-
-function setLang(lang){
-
-if(lang==="en"){
-alert("English version basic demo")
-}
-
-}
-
-function checkOpen(){
-
-const now=new Date().getHours()
-
-let text=""
-
-if(now>=6 && now<=21){
-text="Đang mở cửa"
-}else{
-text="Đã đóng cửa"
-}
-
-document.getElementById("openStatus").innerText=text
-
-}
-
-checkOpen()
 
 </script>
 

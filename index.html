@@ -8,7 +8,7 @@
 <style>
 
 body{
-font-family: Arial, sans-serif;
+font-family:Arial;
 margin:0;
 background:#f4f4f4;
 }
@@ -16,37 +16,52 @@ background:#f4f4f4;
 header{
 background:#8B0000;
 color:white;
-padding:20px;
 text-align:center;
+padding:20px;
 }
 
 nav{
 background:#222;
+color:white;
 padding:10px;
-text-align:center;
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
 }
 
 nav a{
 color:white;
-margin:0 10px;
 text-decoration:none;
 font-weight:bold;
 }
 
 .container{
-max-width:1000px;
+max-width:1100px;
 margin:auto;
 padding:20px;
 }
 
 .search{
-margin-bottom:20px;
+margin-bottom:15px;
 }
 
 .search input{
 width:100%;
 padding:10px;
 font-size:16px;
+}
+
+.filters{
+margin-bottom:20px;
+}
+
+.filters button{
+padding:8px 10px;
+margin:4px;
+border:none;
+background:#ddd;
+cursor:pointer;
 }
 
 .menu-grid{
@@ -59,7 +74,7 @@ gap:20px;
 background:white;
 border-radius:10px;
 overflow:hidden;
-box-shadow:0 2px 6px rgba(0,0,0,0.15);
+box-shadow:0 2px 6px rgba(0,0,0,0.2);
 }
 
 .card img{
@@ -72,10 +87,9 @@ object-fit:cover;
 padding:15px;
 }
 
-.card-title{
+.title{
 font-weight:bold;
 font-size:18px;
-margin-bottom:5px;
 }
 
 .price{
@@ -84,46 +98,65 @@ font-weight:bold;
 }
 
 button{
-margin-top:10px;
 padding:8px 12px;
 border:none;
 background:#8B0000;
 color:white;
 cursor:pointer;
 border-radius:5px;
+margin-top:8px;
 }
 
-.section-title{
-margin-top:40px;
-margin-bottom:20px;
-font-size:24px;
-border-bottom:2px solid #ddd;
-padding-bottom:5px;
+.cart{
+position:fixed;
+right:0;
+top:0;
+width:260px;
+height:100%;
+background:white;
+box-shadow:-2px 0 6px rgba(0,0,0,0.2);
+padding:15px;
+overflow:auto;
+}
+
+.cart h3{
+margin-top:0;
+}
+
+.cart-item{
+display:flex;
+justify-content:space-between;
+margin-bottom:6px;
 }
 
 .contact{
 background:white;
 padding:20px;
 border-radius:10px;
-box-shadow:0 2px 6px rgba(0,0,0,0.1);
-margin-top:40px;
-}
-
-footer{
-text-align:center;
-padding:20px;
-color:#777;
+margin-top:30px;
 }
 
 iframe{
 width:100%;
-height:300px;
+height:250px;
 border:0;
-margin-top:15px;
-border-radius:10px;
+margin-top:10px;
+border-radius:8px;
+}
+
+.status{
+font-weight:bold;
+margin-top:5px;
+}
+
+.lang{
+position:absolute;
+right:10px;
+top:10px;
 }
 
 </style>
+
 </head>
 
 <body>
@@ -131,6 +164,11 @@ border-radius:10px;
 <header>
 <h1>BÚN BÒ 85</h1>
 <p>Đậm vị Huế</p>
+<div class="status" id="openStatus"></div>
+<div class="lang">
+<button onclick="setLang('vi')">VI</button>
+<button onclick="setLang('en')">EN</button>
+</div>
 </header>
 
 <nav>
@@ -141,64 +179,50 @@ border-radius:10px;
 <div class="container">
 
 <div class="search">
-<input type="text" id="search" placeholder="Tìm món...">
+<input id="search" placeholder="Tìm món">
 </div>
 
-<h2 class="section-title" id="menu">Menu</h2>
+<div class="filters">
+<button onclick="filterMenu('all')">Tất cả</button>
+<button onclick="filterMenu('bunbo')">Bún bò</button>
+<button onclick="filterMenu('drink')">Đồ uống</button>
+</div>
 
-<div class="menu-grid" id="menuList">
+<div class="menu-grid" id="menu">
 
-<div class="card" data-name="bun bo dac biet">
+<div class="card" data-category="bunbo" data-name="bun bo dac biet">
 <img src="https://images.unsplash.com/photo-1604908176997-43117f1d07ef">
 <div class="card-body">
-<div class="card-title">Bún bò đặc biệt</div>
+<div class="title">Bún bò đặc biệt</div>
 <div class="price">65.000đ</div>
-<button onclick="order('Bún bò đặc biệt')">Đặt món</button>
+<button onclick="addCart('Bún bò đặc biệt',65000)">Thêm</button>
 </div>
 </div>
 
-<div class="card" data-name="bun bo tai">
+<div class="card" data-category="bunbo" data-name="bun bo tai">
 <img src="https://images.unsplash.com/photo-1550547660-d9450f859349">
 <div class="card-body">
-<div class="card-title">Bún bò tái</div>
+<div class="title">Bún bò tái</div>
 <div class="price">55.000đ</div>
-<button onclick="order('Bún bò tái')">Đặt món</button>
+<button onclick="addCart('Bún bò tái',55000)">Thêm</button>
 </div>
 </div>
 
-<div class="card" data-name="bun bo gan">
-<img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624">
-<div class="card-body">
-<div class="card-title">Bún bò gân</div>
-<div class="price">55.000đ</div>
-<button onclick="order('Bún bò gân')">Đặt món</button>
-</div>
-</div>
-
-<div class="card" data-name="bun bo cha cua">
-<img src="https://images.unsplash.com/photo-1550547660-d9450f859349">
-<div class="card-body">
-<div class="card-title">Bún bò chả cua</div>
-<div class="price">60.000đ</div>
-<button onclick="order('Bún bò chả cua')">Đặt món</button>
-</div>
-</div>
-
-<div class="card" data-name="nuoc ngot">
+<div class="card" data-category="drink" data-name="nuoc ngot">
 <img src="https://images.unsplash.com/photo-1622483767028-3f66f32e8a1d">
 <div class="card-body">
-<div class="card-title">Nước ngọt</div>
+<div class="title">Nước ngọt</div>
 <div class="price">15.000đ</div>
-<button onclick="order('Nước ngọt')">Đặt món</button>
+<button onclick="addCart('Nước ngọt',15000)">Thêm</button>
 </div>
 </div>
 
-<div class="card" data-name="nuoc suoi">
+<div class="card" data-category="drink" data-name="nuoc suoi">
 <img src="https://images.unsplash.com/photo-1523365280197-f1783db0a8c9">
 <div class="card-body">
-<div class="card-title">Nước suối</div>
+<div class="title">Nước suối</div>
 <div class="price">10.000đ</div>
-<button onclick="order('Nước suối')">Đặt món</button>
+<button onclick="addCart('Nước suối',10000)">Thêm</button>
 </div>
 </div>
 
@@ -208,48 +232,110 @@ border-radius:10px;
 
 <h2>Liên hệ</h2>
 
-<p><b>Địa chỉ:</b> Thêm địa chỉ quán</p>
+<p><b>Địa chỉ:</b> thêm địa chỉ quán</p>
 <p><b>Điện thoại:</b> <a href="tel:0900000000">0900000000</a></p>
 
-<iframe
-src="https://www.google.com/maps?q=ho%20chi%20minh&output=embed">
-</iframe>
+<iframe src="https://www.google.com/maps?q=ho%20chi%20minh&output=embed"></iframe>
 
 </div>
 
 </div>
 
-<footer>
-© 2026 BunBo85
-</footer>
+<div class="cart">
+<h3>Giỏ hàng</h3>
+<div id="cartItems"></div>
+<hr>
+<div>Tổng: <span id="total">0</span> đ</div>
+<button onclick="order()">Gửi đơn</button>
+</div>
 
 <script>
 
-const search = document.getElementById("search");
-const items = document.querySelectorAll(".card");
+const items=document.querySelectorAll(".card")
+const search=document.getElementById("search")
 
-search.addEventListener("keyup", function(){
+search.addEventListener("keyup",function(){
 
-const value = this.value.toLowerCase();
+const value=this.value.toLowerCase()
 
 items.forEach(card=>{
-const name = card.dataset.name;
+const name=card.dataset.name
+card.style.display=name.includes(value)?"block":"none"
+})
 
-if(name.includes(value)){
-card.style.display="block";
+})
+
+function filterMenu(cat){
+
+items.forEach(card=>{
+
+if(cat==="all" || card.dataset.category===cat){
+card.style.display="block"
 }else{
-card.style.display="none";
+card.style.display="none"
 }
 
-});
-
-});
-
-function order(item){
-
-alert("Bạn đã chọn: " + item + ". Vui lòng gọi quán để đặt món.");
+})
 
 }
+
+let cart=[]
+function addCart(name,price){
+
+cart.push({name,price})
+renderCart()
+
+}
+
+function renderCart(){
+
+const list=document.getElementById("cartItems")
+list.innerHTML=""
+let total=0
+
+cart.forEach(item=>{
+total+=item.price
+list.innerHTML+=`<div class="cart-item">
+<span>${item.name}</span>
+<span>${item.price}</span>
+</div>`
+})
+
+document.getElementById("total").innerText=total
+
+}
+
+function order(){
+
+alert("Mang danh sách này ra quầy hoặc gọi nhân viên.")
+
+}
+
+function setLang(lang){
+
+if(lang==="en"){
+alert("English version basic demo")
+}
+
+}
+
+function checkOpen(){
+
+const now=new Date().getHours()
+
+let text=""
+
+if(now>=6 && now<=21){
+text="Đang mở cửa"
+}else{
+text="Đã đóng cửa"
+}
+
+document.getElementById("openStatus").innerText=text
+
+}
+
+checkOpen()
 
 </script>
 
